@@ -1,0 +1,22 @@
+python3 models/export.py --weights ../yolov8Webapp/best.pt --img-size 640 --batch-size 1
+
+python3 mo.py --input_model ../yolov8Webapp/best.onnx --output_dir ../yolov8Webapp --input_shape [1,3,640,640]
+
+
+python3 -m venv yolov8Test
+
+source ./yolov8Test/bin/activate
+
+pip install -r requirements.txt
+
+
+docker build -t yolov8-app .
+docker run -p 5000:5000 yolov8-app
+
+#name docker file as Dockerfile
+
+
+http://localhost:8080/
+
+
+sudo docker logs
